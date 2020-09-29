@@ -1,4 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { Plano } from "src/app/plano/plano.entity";
+import { Usuario } from "src/app/usuario/usuario.entity";
 
 import "../bootstrap";
 
@@ -9,9 +11,9 @@ const databasePostgresOptions: TypeOrmModuleOptions = {
   username: "docker",
   password: "docker",
   database: "acme",
-  synchronize: false,
+  synchronize: true,
   logging: ["query", "error"],
-  entities: [__dirname + "/../*/.entity{.ts,.js}"],
+  entities: [Usuario, Plano],
   migrations: [__dirname + "/migrations/*.ts"],
   cli: {
     migrationsDir: "src/database/migrations",

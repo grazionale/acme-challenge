@@ -1,14 +1,80 @@
-<div class="card">
-  <h5>Inline</h5>
-  <div class="p-formgroup-inline">
-    <div class="p-field">
-      <label for="firstname5" class="p-sr-only">Firstname</label>
-      <input id="firstname5" type="text" pInputText placeholder="Firstname">
+<div class="toolbar" role="banner">
+  <img width="40" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+</div>
+<div class="content container">
+  <div class="p-grid">
+    <div class="p-sm-12 p-md-4 p-lg-4">
+      <p-card>
+        <h2>Plano Básico</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sollicitudin congue diam eget sagittis.
+          Curabitur ornare dapibus lacus, eget fringilla elit vehicula quis.</p>
+        <h1>R$ 29,90</h1>
+        <p-button type="button" icon="pi pi-check" label="Ver detalhes" styleClass="p-button-sm p-button-warning p-mt-4"
+          (click)="openPlanDetails()">
+        </p-button>
+      </p-card>
     </div>
-    <div class="p-field">
-      <label for="lastname5" class="p-sr-only">Lastname</label>
-      <input id="lastname5" type="text" pInputText placeholder="Lastname">
+    <div class="p-sm-12 p-md-4 p-lg-4">
+      <p-card>
+        <h2>Plano Médio</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sollicitudin congue diam eget sagittis.
+          Curabitur ornare dapibus lacus, eget fringilla elit vehicula quis.</p>
+        <h1>R$ 39,90</h1>
+        <p-button type="button" icon="pi pi-check" label="Ver detalhes" styleClass="p-button-sm p-button-warning p-mt-4"
+          (click)="openPlanDetails()">
+        </p-button>
+      </p-card>
     </div>
-    <button pButton pRipple type="button" label="Submit"></button>
+    <div class="p-sm-12 p-md-4 p-lg-4">
+      <p-card>
+        <h2>Plano Super</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sollicitudin congue diam eget sagittis.
+          Curabitur ornare dapibus lacus, eget fringilla elit vehicula quis.</p>
+        <h1>R$ 49,90</h1>
+        <p-button type="button" icon="pi pi-check" label="Ver detalhes" styleClass="p-button-sm p-button-warning p-mt-4"
+          (click)="openPlanDetails()">
+        </p-button>
+      </p-card>
+    </div>
   </div>
 </div>
+
+<h5>Modal</h5>
+<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  [draggable]="false" [resizable]="false">
+  <p class="p-m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur.
+    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="showConfirmPlanSelected()" label="Ativar Plano" class="p-button-text">
+    </p-button>
+    <p-button icon="pi pi-times" styleClass="p-button-text" (click)="displayModal=false" label="Voltar"></p-button>
+  </ng-template>
+</p-dialog>
+<!-- <p-toast></p-toast> -->
+<!-- <p-toast position="top-left" key="tl"></p-toast>
+<p-toast position="top-center" key="tc"></p-toast>
+<p-toast position="bottom-center" key="bc"></p-toast> -->
+
+<p-toast position="bottom-center" key="c" (onClose)="onSelectPlan()" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+    <div class="p-flex p-flex-column" style="flex: 1">
+      <div class="p-text-center">
+        <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+        <h4>{{message.summary}}</h4>
+        <p>{{message.detail}}</p>
+      </div>
+      <div class="p-grid p-fluid">
+        <div class="p-col-6">
+          <button type="button" pButton (click)="onSelectPlan()" label="Yes" class="p-button-success"></button>
+        </div>
+        <div class="p-col-6">
+          <button type="button" pButton (click)="onSelectPlan()" label="No" class="p-button-secondary"></button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-toast>

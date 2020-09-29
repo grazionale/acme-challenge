@@ -19,6 +19,8 @@ import { PasswordModule } from 'primeng/password';
 import { PanelModule } from 'primeng/panel';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
 
 registerLocaleData(ptBr);
 
@@ -35,6 +37,8 @@ registerLocaleData(ptBr);
     PanelModule,
     ButtonModule,
     CardModule,
+    DialogModule,
+    ToastModule,
     ToastyModule.forRoot(),
   ],
   providers: [

@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import {
-  ToastyService,
-  ToastyConfig,
-  ToastOptions,
-  ToastData,
-} from 'ng2-toasty';
+import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
 
 export class Login {
   email: string;
@@ -33,11 +28,7 @@ export class LoginComponent implements OnInit {
 
   public showRegisterForm = false;
 
-  constructor(
-    private router: Router,
-    private toastyService: ToastyService,
-    private toastyConfig: ToastyConfig
-  ) {}
+  constructor(private router: Router, private toastyService: ToastyService) {}
 
   public ngOnInit(): void {
     this.login = new Login();

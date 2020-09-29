@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {
     this.toastyConfig.theme = 'bootstrap';
+    this.toastyConfig.position = 'top-right';
   }
 
   ngOnInit() {

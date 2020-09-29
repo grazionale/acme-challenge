@@ -12,15 +12,14 @@
       <form #formLogin="ngForm" (ngSubmit)="onLogin(login)" novalidate>
         <div class="p-field">
           <label for="login-email">Usuário</label>
-          <input pInputText id="login-email" type="text" class="p-inputtext-xs" name="email" [(ngModel)]="login.email"
-            required>
+          <input pInputText id="login-email" type="text" name="email" [(ngModel)]="login.email" required>
         </div>
         <div class="p-field">
           <label for="login-password">Senha</label>
-          <input pPassword id="login-password" type="text" class="p-inputtext-xs" name="password"
-            [(ngModel)]="login.password" required>
+          <input pPassword id="login-password" type="password" name="password" [(ngModel)]="login.password" required
+            weakLabel="Fraca" mediumLabel="Média" strongLabel="Forte">
         </div>
-        <pButton pButton type="button" label="Entrar"></pButton>
+        <pButton pButton type=" button" label="Entrar"></pButton>
       </form>
       <p-button label="Cadastre-se" (click)="showRegister()" styleClass="p-button-link"></p-button>
     </div>
@@ -33,23 +32,24 @@
       <form *ngIf="showRegisterForm" #formRegister="ngForm" (ngSubmit)="onRegister(register)" novalidate>
         <div class="p-field">
           <label for="register-first">Nome</label>
-          <input pInputText id="register-first" type="text" name="first" [(ngModel)]="register.first" required
+          <input pInputText id="register-first" type="text" name="register-first" [(ngModel)]="register.first" required
             placeholder="Nome">
         </div>
         <div class="p-field">
           <label for="register-last">Sobrenome</label>
-          <input pInputText id="register-last" type="text" name="last" [(ngModel)]="register.last" required
+          <input pInputText id="register-last" type="text" name="register-last" [(ngModel)]="register.last" required
             placeholder="Sobrenome">
         </div>
         <div class="p-field">
           <label for="register-email">E-mail</label>
-          <input pInputText id="register-email" type="text" name="email" [(ngModel)]="register.email" required
+          <input pInputText id="register-email" type="text" name="register-email" [(ngModel)]="register.email" required
             placeholder="E-mail">
         </div>
         <div class="p-field">
           <label for="register-password">Senha</label>
-          <input pPassword type="register-password" name="password" [(ngModel)]="register.password" required
-            placeholder="Senha">
+          <input pPassword id="register-password" type="password" name="register-password"
+            [(ngModel)]="register.password" required placeholder="Senha" weakLabel="Fraca" mediumLabel="Média"
+            strongLabel="Forte">
         </div>
         <div class="p-field">
           <pButton pButton type="button" label="Cadastrar-se"></pButton>

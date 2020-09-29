@@ -17,6 +17,8 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { PanelModule } from 'primeng/panel';
+import { ButtonModule } from 'primeng/button';
+import { CardModule } from 'primeng/card';
 
 registerLocaleData(ptBr);
 
@@ -31,6 +33,8 @@ registerLocaleData(ptBr);
     InputTextModule,
     PasswordModule,
     PanelModule,
+    ButtonModule,
+    CardModule,
     ToastyModule.forRoot(),
   ],
   providers: [

@@ -2,44 +2,62 @@
 <div class="toolbar" role="banner">
   <img width="40" alt="Angular Logo"
     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
-  <div class="box">
-    <form class="form" #formLogin="ngForm" (ngSubmit)="onLogin(login)" novalidate>
-      <span class="p-float-label">
-        <input pInputText id="float-input" type="text" class="p-inputtext-xs" name="email" [(ngModel)]="login.email"
-          required>
-        <label for="float-input">Usuário</label>
-      </span>
-      <span class="p-float-label">
-        <input pPassword id="float-input-password" type="text" class="p-inputtext-xs" name="password"
-          [(ngModel)]="login.password" required>
-        <label for="float-input-password">Senha</label>
-      </span>
-      <button class="button">Entrar</button>
-    </form>
-    <button (click)="showRegister()" class="cadastrese">Cadastre-se</button>
-
-  </div>
-  <!-- [disabled]="verifyInformations(login.email, login.password) || isLoading" -->
 </div>
 
 
-<div class="content" role="main">
-  <span *ngIf="!showRegisterForm" class="title">Bem Vindo!</span>
-  <span *ngIf="showRegisterForm" class="title">Preencha os campos para se cadastrar</span>
+<div class="content">
+  <p-card *ngIf="!showRegisterForm">
+    <h1>Bem Vindo!</h1>
+    <div class="p-fluid">
+      <form #formLogin="ngForm" (ngSubmit)="onLogin(login)" novalidate>
+        <div class="p-field">
+          <label for="login-email">Usuário</label>
+          <input pInputText id="login-email" type="text" class="p-inputtext-xs" name="email" [(ngModel)]="login.email"
+            required>
+        </div>
+        <div class="p-field">
+          <label for="login-password">Senha</label>
+          <input pPassword id="login-password" type="text" class="p-inputtext-xs" name="password"
+            [(ngModel)]="login.password" required>
+        </div>
+        <pButton pButton type="button" label="Entrar"></pButton>
+      </form>
+      <p-button label="Cadastre-se" (click)="showRegister()" styleClass="p-button-link"></p-button>
+    </div>
+  </p-card>
 
-  <form *ngIf="showRegisterForm" class="formRegister" #formRegister="ngForm" (ngSubmit)="onRegister(register)"
-    novalidate>
-    <input pInputText type="text" class="p-inputtext-lg" name="first" [(ngModel)]="register.first" required
-      placeholder="Nome">
-    <input pInputText type="text" class="p-inputtext-lg" name="last" [(ngModel)]="register.last" required
-      placeholder="Sobrenome">
-    <input pInputText type="text" class="p-inputtext-lg" name="email" [(ngModel)]="register.email" required
-      placeholder="E-mail">
-    <input pPassword type="password" class="p-inputtext-lg" name="password" [(ngModel)]="register.password" required
-      placeholder="Senha">
-    <button class="button">Cadastrar-se</button>
-  </form>
-
+  <p-card *ngIf="showRegisterForm">
+    <h2 class="p-text-nowrap p-text-truncate p-text-bold">Cadastre-se</h2>
+    <h4 class="p-text-nowrap p-text-truncate p-text-normal p-mb-4">É rápido e fácil.</h4>
+    <div class="p-fluid">
+      <form *ngIf="showRegisterForm" #formRegister="ngForm" (ngSubmit)="onRegister(register)" novalidate>
+        <div class="p-field">
+          <label for="register-first">Nome</label>
+          <input pInputText id="register-first" type="text" name="first" [(ngModel)]="register.first" required
+            placeholder="Nome">
+        </div>
+        <div class="p-field">
+          <label for="register-last">Sobrenome</label>
+          <input pInputText id="register-last" type="text" name="last" [(ngModel)]="register.last" required
+            placeholder="Sobrenome">
+        </div>
+        <div class="p-field">
+          <label for="register-email">E-mail</label>
+          <input pInputText id="register-email" type="text" name="email" [(ngModel)]="register.email" required
+            placeholder="E-mail">
+        </div>
+        <div class="p-field">
+          <label for="register-password">Senha</label>
+          <input pPassword type="register-password" name="password" [(ngModel)]="register.password" required
+            placeholder="Senha">
+        </div>
+        <div class="p-field">
+          <pButton pButton type="button" label="Cadastrar-se"></pButton>
+          <p-button label="Voltar" (click)="showRegister()" styleClass="p-button-link"></p-button>
+        </div>
+      </form>
+    </div>
+  </p-card>
 </div>
 
 <router-outlet></router-outlet>

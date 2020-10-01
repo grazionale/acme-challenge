@@ -2,7 +2,7 @@ import { Module } from "@nestjs/common";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { UsuarioModule } from "./app/usuario/usuario.module";
-import { PlanoModule } from "./app/plano/plano.module";
+import { PlainModule } from "./app/plain/plain.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import databasePostgresOptions = require("./database/database-postgres.config");
@@ -10,7 +10,7 @@ import databasePostgresOptions = require("./database/database-postgres.config");
 @Module({
   imports: [
     UsuarioModule,
-    PlanoModule,
+    PlainModule,
     TypeOrmModule.forRoot(databasePostgresOptions),
   ],
   controllers: [AppController],

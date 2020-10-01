@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class PlanoService {
+export class PlainService {
   buscar(): string {
     return "planos";
   }

@@ -64,10 +64,10 @@ export class DashboardComponent implements OnInit {
     this.messageService.clear();
     this.messageService.add({
       key: 'c',
-      sticky: true,
-      severity: 'warn',
-      summary: 'Are you sure?',
-      detail: 'Confirm to proceed',
+      sticky: false,
+      severity: 'success',
+      summary: '',
+      detail: 'Confirmar',
     });
   }
 }

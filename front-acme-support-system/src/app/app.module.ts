@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 // Declarations
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +22,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
+import { LoginService } from './views/login/login.service';
 
 registerLocaleData(ptBr);
 
@@ -29,6 +31,7 @@ registerLocaleData(ptBr);
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
@@ -46,6 +49,7 @@ registerLocaleData(ptBr);
       provide: LOCALE_ID,
       useValue: 'pt',
     },
+    LoginService,
   ],
   bootstrap: [AppComponent],
 })

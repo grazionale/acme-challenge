@@ -30,19 +30,19 @@
     <div class="p-fluid">
       <form *ngIf="showRegisterForm" #formRegister="ngForm" (ngSubmit)="onRegister(register)" novalidate>
         <div class="p-field">
-          <label for="register-first">Nome</label>
-          <input pInputText id="register-first" type="text" name="register-first" [(ngModel)]="register.first" required
-            placeholder="Nome">
+          <label for="register-firstName">Nome</label>
+          <input pInputText id="register-firstName" type="text" name="register-firstName"
+            [(ngModel)]="register.firstName" required placeholder="Nome">
         </div>
         <div class="p-field">
-          <label for="register-last">Sobrenome</label>
-          <input pInputText id="register-last" type="text" name="register-last" [(ngModel)]="register.last" required
-            placeholder="Sobrenome">
+          <label for="register-lastName">Sobrenome</label>
+          <input pInputText id="register-lastName" type="text" name="register-lastName" [(ngModel)]="register.lastName"
+            required placeholder="Sobrenome">
         </div>
         <div class="p-field">
-          <label for="register-email">E-mail</label>
-          <input pInputText id="register-email" type="text" name="register-email" [(ngModel)]="register.email" required
-            placeholder="E-mail">
+          <label for="register-username">Usuario</label>
+          <input pInputText id="register-username" type="text" name="register-username" [(ngModel)]="register.username"
+            required placeholder="Usuário">
         </div>
         <div class="p-field">
           <label for="register-password">Senha</label>

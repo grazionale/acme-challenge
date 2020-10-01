@@ -7,11 +7,11 @@
 
     <div class="p-sm-12 p-md-4 p-lg-4" *ngFor="let plain of plains; index as i;">
       <p-card>
-        <h2>Plano Básico</h2>
+        <h2>{{plain.title}}</h2>
         <p>{{plain.description}}</p>
         <h1>{{plain.price}}</h1>
         <p-button type="button" icon="pi pi-check" label="Ver detalhes" styleClass="p-button-sm p-button-warning p-mt-4"
-          (click)="openPlanDetails()">
+          (click)="openPlanDetails(plain)">
         </p-button>
       </p-card>
     </div>
@@ -19,23 +19,17 @@
 </div>
 
 <h5>Modal</h5>
-<p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
-  [draggable]="false" [resizable]="false">
-  <p class="p-m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p-dialog header="{{plainSelected?.title}}" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <p class="p-mb-2">{{plainSelected?.description}}</p>
+  <p class="p-mb-4">Por apenas:</p>
+  <h2 class="p-m-0">R$ {{plainSelected?.price}}</h2>
   <ng-template pTemplate="footer">
     <p-button icon="pi pi-check" (click)="showConfirmPlanSelected()" label="Ativar Plano" class="p-button-text">
     </p-button>
     <p-button icon="pi pi-times" styleClass="p-button-text" (click)="displayModal=false" label="Voltar"></p-button>
   </ng-template>
 </p-dialog>
-<!-- <p-toast></p-toast> -->
-<!-- <p-toast position="top-left" key="tl"></p-toast>
-<p-toast position="top-center" key="tc"></p-toast>
-<p-toast position="bottom-center" key="bc"></p-toast> -->
 
 <p-toast position="bottom-center" key="c" (onClose)="onSelectPlan()" [baseZIndex]="5000">
   <ng-template let-message pTemplate="message">

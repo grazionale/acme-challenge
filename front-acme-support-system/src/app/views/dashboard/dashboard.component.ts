@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastOptions, ToastyService } from 'ng2-toasty';
 import { MessageService } from 'primeng/api';
 import { DashboardService } from './dashboard.service';
 
 export class Plain {
   id: number;
+  title: string;
   description: string;
   price: number;
 }
@@ -16,10 +18,12 @@ export class Plain {
 export class DashboardComponent implements OnInit {
   displayModal: boolean;
   plains: Plain[];
+  plainSelected: Plain;
 
   constructor(
     private messageService: MessageService,
-    private dashboardService: DashboardService
+    private dashboardService: DashboardService,
+    private toastyService: ToastyService
   ) {}
 
   ngOnInit(): void {
@@ -31,11 +35,21 @@ export class DashboardComponent implements OnInit {
       (response) => {
         this.plains = response;
       },
-      (reject) => {}
+      (reject) => {
+        var toastOptions: ToastOptions = {
+          title: 'Que pena',
+          msg: 'Não encontramos nenhum plano',
+          showClose: true,
+          timeout: 5000,
+        };
+
+        this.toastyService.error(toastOptions);
+      }
     );
   }
 
-  openPlanDetails() {
+  openPlanDetails(plain) {
+    this.plainSelected = plain;
     this.displayModal = true;
   }
 

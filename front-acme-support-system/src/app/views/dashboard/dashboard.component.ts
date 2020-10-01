@@ -54,7 +54,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onSelectPlan() {
-    // this.showConfirmPlanSelected();
     this.messageService.clear();
   }
 
@@ -67,7 +66,7 @@ export class DashboardComponent implements OnInit {
       sticky: false,
       severity: 'success',
       summary: '',
-      detail: 'Confirmar',
+      detail: `Confirmar escolha do ${this.plainSelected?.title}`,
     });
   }
 }

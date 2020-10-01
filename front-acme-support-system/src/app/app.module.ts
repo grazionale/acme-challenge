@@ -23,6 +23,7 @@ import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { LoginService } from './views/login/login.service';
+import { DashboardService } from './views/dashboard/dashboard.service';
 
 registerLocaleData(ptBr);
 
@@ -50,6 +51,7 @@ registerLocaleData(ptBr);
       useValue: 'pt',
     },
     LoginService,
+    DashboardService,
   ],
   bootstrap: [AppComponent],
 })

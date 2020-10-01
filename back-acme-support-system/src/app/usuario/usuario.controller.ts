@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { CriarUsuarioDto } from "./dto/criarUsuario.dto";
+import { Usuario } from "./usuario.entity";
 import { UsuarioService } from "./usuario.service";
 
 @Controller("usuarios")
@@ -7,12 +8,12 @@ export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
   @Get()
-  buscar(): string {
-    return this.usuarioService.buscar();
+  async buscar(): Promise<Usuario[]> {
+    return await this.usuarioService.buscar();
   }
 
   @Post()
-  salvar(@Body() criarUsuarioDto: CriarUsuarioDto): CriarUsuarioDto {
-    return this.usuarioService.salvar(criarUsuarioDto);
+  async salvar(@Body() criarUsuarioDto: CriarUsuarioDto): Promise<Usuario> {
+    return await this.usuarioService.salvar(criarUsuarioDto);
   }
 }

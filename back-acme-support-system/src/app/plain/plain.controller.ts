@@ -9,12 +9,12 @@ export class PlainController {
   constructor(private readonly plainService: PlainService) {}
 
   @Get()
-  async buscar(): Promise<Plain[]> {
-    return await this.plainService.buscar();
+  async find(): Promise<Plain[]> {
+    return await this.plainService.find();
   }
 
   @Post()
-  async salvar(@Body() plain: Plain): Promise<Plain> {
-    return await this.plainService.salvar(plain);
+  async save(@Body() plain: Plain): Promise<Plain> {
+    return await this.plainService.save(plain);
   }
 }

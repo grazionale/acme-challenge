@@ -7,13 +7,17 @@ import {
 import { UserRequestDto } from "./dto/userRequest.dto";
 import { UserResponseDto } from "./dto/userResponse.dto";
 import { User } from "./user.entity";
-import { UserRepository } from "./user.repository";
 import PostgresErrorCode from "../../database/postgresErrorCode.enum";
 import * as bcrypt from "bcrypt";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class UserService {
-  constructor(private userRepository: UserRepository) {}
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>
+  ) {}
 
   async find(): Promise<User[]> {
     return await this.userRepository.find();

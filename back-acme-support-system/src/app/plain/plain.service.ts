@@ -1,16 +1,20 @@
 import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 import { Plain } from "./plain.entity";
-import { PlainRepository } from "./plain.repository";
 
 @Injectable()
 export class PlainService {
-  constructor(private plainRepository: PlainRepository) {}
+  constructor(
+    @InjectRepository(Plain)
+    private plainRepository: Repository<Plain>
+  ) {}
 
-  async buscar(): Promise<Plain[]> {
+  async find(): Promise<Plain[]> {
     return await this.plainRepository.find();
   }
 
-  async salvar(plain: Plain): Promise<Plain> {
+  async save(plain: Plain): Promise<Plain> {
     const user = await this.plainRepository.save(plain);
 
     return user;

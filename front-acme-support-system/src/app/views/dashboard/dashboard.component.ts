@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastOptions, ToastyService } from 'ng2-toasty';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/app/core/security/auth.service';
 import { DashboardService } from './dashboard.service';
 
 export class Plain {
@@ -23,7 +25,9 @@ export class DashboardComponent implements OnInit {
   constructor(
     private messageService: MessageService,
     private dashboardService: DashboardService,
-    private toastyService: ToastyService
+    private toastyService: ToastyService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -68,5 +72,10 @@ export class DashboardComponent implements OnInit {
       summary: '',
       detail: `Confirmar escolha do ${this.plainSelected?.title}`,
     });
+  }
+
+  logout() {
+    this.authService.clearAccessToken();
+    this.router.navigate(['/login']);
   }
 }

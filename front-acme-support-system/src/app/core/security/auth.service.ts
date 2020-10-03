@@ -35,58 +35,15 @@ export class AuthService {
       });
   }
 
-  // public getNewAccessToken(): Promise<void> {
-  //   const headers = new HttpHeaders().append(
-  //     'Content-Type',
-  //     'application/x-www-form-urlencoded'
-  //   );
-
-  //   const body = 'grant_type=refresh_token';
-
-  //   return this.http
-  //     .post<any>(this.oauthTokenUrl, body, { headers })
-  //     .toPromise()
-  //     .then((response) => {
-  //       this.storageToken(response.access_token);
-
-  //       console.log('Novo access token criado!');
-
-  //       return Promise.resolve(null);
-  //     })
-  //     .catch((response) => {
-  //       console.error('Erro ao renovar token.', response);
-  //       return Promise.resolve(null);
-  //     });
-  // }
-
-  // public clearAccessToken() {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user_id');
-  //   this.jwtPayload = null;
-  // }
+  public clearAccessToken() {
+    localStorage.removeItem('token');
+    this.jwtPayload = null;
+  }
 
   public isAccessTokenInvalid() {
     const token = localStorage.getItem('token');
     return !token || this.jwtHelper.isTokenExpired(token);
   }
-
-  // public isAuthorized(permissao: string) {
-  //   return (
-  //     this.jwtPayload &&
-  //     this.jwtPayload.authorities &&
-  //     this.jwtPayload.authorities.includes(permissao)
-  //   );
-  // }
-
-  // public hasAtLeastAnyPermission(roles) {
-  //   for (const role of roles) {
-  //     if (this.isAuthorized(role)) {
-  //       return true;
-  //     }
-  //   }
-
-  //   return false;
-  // }
 
   private storageToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);

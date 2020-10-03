@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { Plain } from "./plain.entity";
 import { PlainService } from "./plain.service";
 
-@Controller("planos")
+@Controller("plains")
+@UseGuards(JwtAuthGuard)
 export class PlainController {
   constructor(private readonly plainService: PlainService) {}
 

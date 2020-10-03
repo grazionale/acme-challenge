@@ -19,6 +19,13 @@ export class UserService {
     return await this.userRepository.find();
   }
 
+  async findByUsername(username: string): Promise<User> {
+    return this.userRepository
+      .createQueryBuilder("user")
+      .where("user.username = :username", { username })
+      .getOne();
+  }
+
   async save(userRequestDto: UserRequestDto): Promise<UserResponseDto> {
     try {
       userRequestDto.password = await bcrypt.hash(userRequestDto.password, 10);

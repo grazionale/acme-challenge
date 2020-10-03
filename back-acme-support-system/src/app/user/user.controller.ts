@@ -9,14 +9,12 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
-  async buscar(): Promise<User[]> {
-    return await this.userService.buscar();
+  async find(): Promise<User[]> {
+    return await this.userService.find();
   }
 
   @Post()
-  async salvar(
-    @Body() userRequestDto: UserRequestDto
-  ): Promise<UserResponseDto> {
-    return await this.userService.salvar(userRequestDto);
+  async save(@Body() userRequestDto: UserRequestDto): Promise<UserResponseDto> {
+    return await this.userService.save(userRequestDto);
   }
 }

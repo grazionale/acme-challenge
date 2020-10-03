@@ -6,11 +6,11 @@ import { User } from "./user.entity";
 import { UserService } from "./user.service";
 
 @Controller("users")
-@UseGuards(JwtAuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   async find(): Promise<User[]> {
     return await this.userService.find();
   }

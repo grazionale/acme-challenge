@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Declarations
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +12,11 @@ import { LoginComponent } from './views/login/login.component';
 import { RouterModule } from '@angular/router';
 import { ToastyModule } from 'ng2-toasty';
 import ptBr from '@angular/common/locales/pt';
-import { registerLocaleData } from '@angular/common';
+import {
+  HashLocationStrategy,
+  LocationStrategy,
+  registerLocaleData,
+} from '@angular/common';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -24,8 +28,16 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { LoginService } from './views/login/login.service';
 import { DashboardService } from './views/dashboard/dashboard.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './core/security/auth.service';
+import { AuthGuard } from './core/security/auth.guard';
 
+import { environment } from './../environments/environment';
 registerLocaleData(ptBr);
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, DashboardComponent],
@@ -44,6 +56,13 @@ registerLocaleData(ptBr);
     DialogModule,
     ToastModule,
     ToastyModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: environment.tokenWhitelistedDomains,
+        disallowedRoutes: environment.tokenBlacklistedRoutes,
+      },
+    }),
   ],
   providers: [
     {
@@ -52,6 +71,12 @@ registerLocaleData(ptBr);
     },
     LoginService,
     DashboardService,
+    AuthService,
+    AuthGuard,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
   ],
   bootstrap: [AppComponent],
 })

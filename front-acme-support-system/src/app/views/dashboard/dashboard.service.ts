@@ -8,7 +8,7 @@ export class DashboardService {
   private userUrl: string;
 
   constructor(private http: HttpClient) {
-    this.userUrl = `${environment.apiUrl}/planos`;
+    this.userUrl = `${environment.apiUrl}/plains`;
   }
 
   public find(): Observable<any> {

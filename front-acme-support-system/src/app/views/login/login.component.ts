@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastyService, ToastOptions, ToastData } from 'ng2-toasty';
+import { AuthService } from 'src/app/core/security/auth.service';
 import { LoginService } from './login.service';
 
 export class Login {
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private toastyService: ToastyService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private auth: AuthService
   ) {}
 
   public ngOnInit(): void {
@@ -75,11 +77,17 @@ export class LoginComponent implements OnInit {
   }
 
   public onLogin(login: Login): void {
-    console.log('logIn');
-    console.log(login.username);
-    console.log(login.password);
-
-    this.router.navigate(['/']);
+    console.log('onLogin');
+    this.auth
+      .login(login.username, login.password)
+      .then((response) => {
+        console.log(response);
+        this.router.navigate(['/']);
+      })
+      .catch((errorObject) => {
+        this.login.password = '';
+        this.toastyService.error('Usuário ou senha incorretos.');
+      });
   }
 
   public verifyInformations(register): boolean {

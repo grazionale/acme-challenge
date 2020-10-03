@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { Plain } from "src/app/plain/plain.entity";
-import { Usuario } from "src/app/usuario/usuario.entity";
+import { User } from "src/app/user/user.entity";
 
 import "../bootstrap";
 
@@ -13,7 +13,7 @@ const databasePostgresOptions: TypeOrmModuleOptions = {
   database: "acme",
   synchronize: true,
   logging: ["query", "error"],
-  entities: [Usuario, Plain],
+  entities: [User, Plain],
   migrations: [__dirname + "/migrations/*.ts"],
   cli: {
     migrationsDir: "src/database/migrations",

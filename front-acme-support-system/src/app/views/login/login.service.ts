@@ -8,7 +8,7 @@ export class LoginService {
   private userUrl: string;
 
   constructor(private http: HttpClient) {
-    this.userUrl = `${environment.apiUrl}/usuarios`;
+    this.userUrl = `${environment.apiUrl}/users`;
   }
 
   public findById(id: string): Observable<any> {

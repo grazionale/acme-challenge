@@ -1,6 +1,6 @@
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { Plain } from "src/app/plain/plain.entity";
-import { User } from "src/app/user/user.entity";
+import { Plain } from "../app/plain/plain.entity";
+import { User } from "../app/user/user.entity";
 
 import "../bootstrap";
 
@@ -11,7 +11,7 @@ const databasePostgresOptions: TypeOrmModuleOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE_NAME,
-  synchronize: true,
+  synchronize: false,
   logging: ["query", "error"],
   entities: [User, Plain],
   migrations: [__dirname + "/migrations/*.ts"],

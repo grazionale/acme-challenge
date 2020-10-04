@@ -8,7 +8,7 @@ import { UserRequestDto } from "./dto/userRequest.dto";
 import { UserResponseDto } from "./dto/userResponse.dto";
 import { User } from "./user.entity";
 import PostgresErrorCode from "../../database/postgresErrorCode.enum";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 

@@ -6,11 +6,11 @@ import "../bootstrap";
 
 const databasePostgresOptions: TypeOrmModuleOptions = {
   type: "postgres",
-  host: "localhost",
-  port: 5435,
-  username: "docker",
-  password: "docker",
-  database: "acme",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE_NAME,
   synchronize: true,
   logging: ["query", "error"],
   entities: [User, Plain],

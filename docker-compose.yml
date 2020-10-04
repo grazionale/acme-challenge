@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  main:
+    container_name: main
+    build:
+      context: back-acme-support-system/.
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - 9229:9229
+    command: npm run start:dev
+    env_file:
+      - .env
+    networks:
+      - webnet
+    depends_on:
+      - postgres
+  postgres:
+    container_name: ${DB_HOST}
+    image: postgres:12
+    networks:
+      - webnet
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+      PG_DATA: /var/lib/postgresql/data
+    ports:
+      - 5435:${DB_PORT}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  angular:
+    container_name: angular
+    build:
+      context: front-acme-support-system/.
+      dockerfile: Dockerfile
+    ports:
+      - 4200:80
+networks:
+  webnet:
+volumes:
+  pgdata:

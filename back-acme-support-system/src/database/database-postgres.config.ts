@@ -15,7 +15,7 @@ const databasePostgresOptions: TypeOrmModuleOptions = {
   migrationsRun: true,
   logging: ["query", "error"],
   entities: [User, Plain],
-  migrations: [__dirname + "/migrations/*.ts"],
+  migrations: ["dist/database/migrations/*.js"],
   cli: {
     migrationsDir: "src/database/migrations",
   },

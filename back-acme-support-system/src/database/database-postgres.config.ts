@@ -12,6 +12,7 @@ const databasePostgresOptions: TypeOrmModuleOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE_NAME,
   synchronize: false,
+  migrationsRun: true,
   logging: ["query", "error"],
   entities: [User, Plain],
   migrations: [__dirname + "/migrations/*.ts"],

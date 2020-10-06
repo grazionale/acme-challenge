@@ -4,9 +4,6 @@ Aplicação construída com containers utlizando Docker Compose, NestJS, Angular
 
 ### Inicialização com containers
 
-    cd back-acme-support-system
-    yarn install
-    cd ..
     docker-compose up --build
 
 Este processo irá criar um container com o backend em NestJS conectado a um banco de dados Postgres e um frontend em Angular.

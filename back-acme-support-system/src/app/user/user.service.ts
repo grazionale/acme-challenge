@@ -1,6 +1,5 @@
 import {
   BadRequestException,
-  HttpException,
   Injectable,
   InternalServerErrorException,
 } from "@nestjs/common";
@@ -9,25 +8,18 @@ import { UserResponseDto } from "./dto/userResponse.dto";
 import { User } from "./user.entity";
 import PostgresErrorCode from "../../database/postgresErrorCode.enum";
 import * as bcrypt from "bcryptjs";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { UserRepository } from "./user.repository";
 
 @Injectable()
 export class UserService {
-  constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>
-  ) {}
+  constructor(private userRepository: UserRepository) {}
 
   async find(): Promise<User[]> {
     return await this.userRepository.find();
   }
 
   async findByUsername(username: string): Promise<User> {
-    return this.userRepository
-      .createQueryBuilder("user")
-      .where("user.username = :username", { username })
-      .getOne();
+    return await this.userRepository.findByUsername(username);
   }
 
   async save(userRequestDto: UserRequestDto): Promise<UserResponseDto> {

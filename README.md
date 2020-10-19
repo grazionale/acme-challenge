@@ -1,4 +1,4 @@
-# Acme Challenge
+# Acme Challenge - NestJS - Angular - Docker
 
 Aplicação construída com containers utlizando Docker Compose, NestJS, Angular e PosgresSQL
 
